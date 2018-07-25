@@ -12,7 +12,7 @@ def add(request, product_id):
 
     if request.comparison.has_product(product_id):
         message = _('{} already in comparison list')
-        messages.error(request, message.format(product.title))
+        messages.error(request, message.format(product.name))
 
     else:
         request.comparison.add(product)
