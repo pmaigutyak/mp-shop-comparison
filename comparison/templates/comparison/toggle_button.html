@@ -1,0 +1,18 @@
+
+{% load i18n comparison %}
+
+
+<button data-url="{% url 'comparison:toggle' object.id %}"
+        data-role="comparison-button"
+        data-active="{% if object.id|is_compared:request %}true{% else %}false{% endif %}"
+        class="{{ class }}">
+    <i class="fa fa-exchange"
+       title="{% trans 'Add to comparison' %}"
+       style="display: none;"
+       data-role="comparison-add"></i>
+    <i class="fa fa-minus-square"
+       title="{% trans 'Remove from comparison' %}"
+       style="display: none;"
+       data-role="comparison-remove"></i>
+    <i class="fa fa-spinner fa-pulse" data-role="loading"></i>
+</button>

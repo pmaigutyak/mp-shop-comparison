@@ -1,0 +1,29 @@
+
+{% load i18n %}
+
+<div class="dropdown pull-right">
+    <a href="javascript:void(0);"
+       id="comparison-dropdown"
+       data-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+
+        <i class="fa fa-exchange"></i>
+        {% trans 'Comparison' %} ({{ request.comparison|length }})
+
+    </a>
+
+    {% if not request.comparison.is_empty %}
+        <ul class="dropdown-menu" aria-labelledby="comparison-dropdown">
+            {% for category in request.comparison.get_categories %}
+                <li>
+                    <a href="{% url 'comparison:index' category.id %}">
+                        {{ category.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+

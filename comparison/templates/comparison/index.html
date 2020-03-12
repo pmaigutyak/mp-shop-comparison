@@ -1,0 +1,122 @@
+
+{% extends 'base.html' %}
+
+{% load i18n thumbnail %}
+
+
+{% block content %}
+
+    {% if products %}
+        <div class="container">
+
+            <h2>
+                {% trans 'Products comparing' %}
+            </h2>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                {% trans 'Image' %}
+                            </td>
+
+                            {% for product in products %}
+                                <td>
+                                    <a href="{{ product.get_absolute_url }}">
+                                        {% block product_logo %}
+                                            {% thumbnail product.logo "500" crop="center" as img %}
+                                                <img class="img-responsive" src="{{ img.url }}" alt="{{ product.name }}">
+                                            {% endthumbnail %}
+                                        {% endblock %}
+                                    </a>
+                                </td>
+                            {% endfor %}
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {% trans 'Product name' %}
+                            </td>
+
+                            {% for product in products %}
+                                <td>
+                                    {% block product_name %}
+                                        <h3>
+                                            <a href="{{ product.get_absolute_url }}">
+                                                {{ product.name }}
+                                            </a>
+                                        </h3>
+                                    {% endblock %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {% trans 'Actions' %}
+                            </td>
+
+                            {% for product in products %}
+                                <td>
+                                    {% block actions %}
+                                        <form method="post"
+                                              action="{% url 'comparison:remove' product.id  %}"
+                                              class="pull-left">
+                                            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-md m-r-10"
+                                                    title="{% trans "Remove from comparison" %}">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                        </form>
+                                    {% endblock %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {% trans 'Price' %}
+                            </td>
+
+                            {% for product in products %}
+                                <td>
+                                    {% block product_price %}
+                                        <b>{{ product.printable_price }}</b>
+                                    {% endblock %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+
+                        {% block attributes %}
+                            {% for attr in attributes %}
+                                <tr>
+                                    <td>
+                                        {{ attr.name }}
+                                    </td>
+
+                                    {% for value in attr.values %}
+                                        <td>{{ value|default_if_none:'-' }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {% endblock %}
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    {% else %}
+        <div class="container alert alert-info">
+            {% trans 'Products not found' %}.
+            <a href="{% url 'home' %}">
+                {% trans 'Go home' %}
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}
+

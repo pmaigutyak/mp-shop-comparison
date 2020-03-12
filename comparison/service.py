@@ -1,14 +1,16 @@
 
 from django.apps import apps
 
+from comparison import config
+
 
 SESSION_KEY = 'COMPARISON'
 
 
 class Comparison(object):
 
-    Product = apps.get_model('products', 'Product')
-    ProductCategory = apps.get_model('products', 'ProductCategory')
+    Product = apps.get_model(config.COMPARISON_PRODUCT_MODEL)
+    ProductCategory = apps.get_model(config.COMPARISON_CATEGORY_MODEL)
 
     def __init__(self, session):
 
@@ -45,7 +47,10 @@ class Comparison(object):
             self._products_cache[product.id] = product
             self._update_session()
 
-    def remove(self, product_id):
+    def remove(self, product):
+
+        product_id = product.id
+
         if product_id in self._product_ids:
             self._product_ids.remove(product_id)
 

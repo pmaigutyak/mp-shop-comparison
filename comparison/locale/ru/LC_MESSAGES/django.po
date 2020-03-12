@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-07 22:53+0300\n"
+"POT-Creation-Date: 2020-03-12 21:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,22 +19,51 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: __init__.py:12
+#: __init__.py:9 templates/comparison/dropdown.html:12
 msgid "Comparison"
 msgstr "Сравнение"
 
-#: views.py:14
-msgid "{} already in comparison list"
-msgstr "{} уже в списке сравнений"
+#: templates/comparison/index.html:13
+msgid "Products comparing"
+msgstr "Сравнение товаров"
 
-#: views.py:20
+#: templates/comparison/index.html:22
+msgid "Image"
+msgstr "Изображение"
+
+#: templates/comparison/index.html:40
+msgid "Product name"
+msgstr "Название товара"
+
+#: templates/comparison/index.html:58
+msgid "Actions"
+msgstr "Действия"
+
+#: templates/comparison/index.html:71
+#: templates/comparison/toggle_button.html:14
+msgid "Remove from comparison"
+msgstr "Удалить из списка сравнений"
+
+#: templates/comparison/index.html:82
+msgid "Price"
+msgstr "Цена"
+
+#: templates/comparison/index.html:115
+msgid "Products not found"
+msgstr "Товары не найдены"
+
+#: templates/comparison/index.html:117
+msgid "Go home"
+msgstr "На главную"
+
+#: templates/comparison/toggle_button.html:10
+msgid "Add to comparison"
+msgstr "Добавить в список сравнений"
+
+#: views.py:49
 msgid "{} added to comparison"
 msgstr "{} добавлено в список сравнений"
 
-#: views.py:33
+#: views.py:59
 msgid "{} removed from comparison"
 msgstr "{} удалено из списка сравнений"
-
-#: views.py:43
-msgid "Comparison list was cleaned"
-msgstr "Список сравнения был очищен"
